@@ -23,6 +23,7 @@ import {
     SubTitle,
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { getRelativePosition } from 'chart.js/helpers';
 
 Chart.register(
@@ -39,7 +40,8 @@ Chart.register(
     Legend,
     Title,
     Tooltip,
-    SubTitle
+    SubTitle,
+    ChartDataLabels
 );
 
 export default {
@@ -217,13 +219,13 @@ export default {
                                         return (
                                             (Array.isArray(currentDataXFieldValue)
                                                 ? currentDataXFieldValue
-                                                      .map(elem => _.get(elem, dataXFieldProperty, elem))
-                                                      .includes(elem)
+                                                    .map(elem => _.get(elem, dataXFieldProperty, elem))
+                                                    .includes(elem)
                                                 : currentDataXFieldValue === elem) &&
                                             (Array.isArray(currentGroupByValue)
                                                 ? currentGroupByValue
-                                                      .map(elem => _.get(elem, groupByProperty, elem))
-                                                      .includes(groupByValue)
+                                                    .map(elem => _.get(elem, groupByProperty, elem))
+                                                    .includes(groupByValue)
                                                 : currentGroupByValue === groupByValue)
                                         );
                                     })
@@ -305,8 +307,8 @@ export default {
                                             point.index
                                         ] === 'object'
                                             ? this.chartInstance.data.datasets[point.datasetIndex].data[point.index][
-                                                  this.content.axis === 'x' ? 'y' : 'x'
-                                              ]
+                                            this.content.axis === 'x' ? 'y' : 'x'
+                                            ]
                                             : this.chartInstance.data.datasets[point.datasetIndex].data[point.index],
                                     ...point,
                                 })),
